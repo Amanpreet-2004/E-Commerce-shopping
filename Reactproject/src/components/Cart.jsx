@@ -185,8 +185,8 @@ const Cart = () => {
                       ${item.price}
                     </p>
 
-                    <div className="d-flex align-items-center gap-0 gap-md-3">
-                      <button
+                  
+                      {/* <button
                         className="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center btn-plus-minus"
                         style={{
                           width: "30px",
@@ -200,10 +200,10 @@ const Cart = () => {
                       >
                         
                         -
-                      </button>
+                      </button> */}
 
                       {/* Quantity Number */}
-                      <span
+                      {/* <span
                         className="fw-bold"
                         style={{
                           minWidth: "25px", // 👈 Number ke liye jagah fix kar di
@@ -213,9 +213,9 @@ const Cart = () => {
                         }}
                       >
                         {item.quantity}
-                      </span>
+                      </span> */}
 
-                      {/* Plus Button */}
+                      {/* Plus Button
                       <button
                         className="btn btn-sm btn-outline-danger rounded-circle d-flex align-items-center justify-content-center btn-plus-minus"
                         style={{
@@ -229,8 +229,14 @@ const Cart = () => {
                       >
                        
                         +
-                      </button>
-                    </div>
+                      </button> */}
+
+                      <div className="quantity-controls">
+  <button className="btn-minus">-</button>
+  <span>{item.quantity}</span>
+  <button className="btn-plus">+</button> {/* Yahan '+' hona zaroori hai */}
+</div>
+                   
                     
                   </div>
 
@@ -272,7 +278,7 @@ const Cart = () => {
                 </span>
               </div>
               <button
-                className="btnCheck btn-danger py-3 rounded-pill fw-bold shadow "
+                className="checkout-btn btn-danger py-3 rounded-pill fw-bold shadow "
                 onClick={() => navigate("/checkout")}
               >
                 Checkout Now

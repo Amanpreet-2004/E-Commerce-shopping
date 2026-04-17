@@ -163,6 +163,41 @@ box-shadow: 2px 2px 2px 2px rgb(67, 66, 66);
         height: 80px;
     }
 }
+
+/* Quantity controls ko ek line mein laane ke liye */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Minus, Number aur Plus ke beech barabar jagah */
+    margin: 15px 0;
+}
+
+/* Plus aur Minus dono buttons ke liye common style */
+.btn-plus, .btn-minus {
+    display: flex !important; /* Force display karein */
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f44336; /* Red color */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.checkout-btn {
+    width: 100%;
+    max-width: 300px; /* Bahut bada na ho jaye */
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 25px;
+    margin-bottom: 20px; /* Niche thodi jagah chhodein */
+}
 .btnCheck{
   margin: 20px 50px;
   background-color: rgb(201, 84, 84);
