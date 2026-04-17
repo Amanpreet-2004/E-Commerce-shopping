@@ -163,13 +163,15 @@ const Cart = () => {
 <img 
   src={
     item.image.includes("localhost") 
-      ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
-      : `${API_BASE_URL}/${item.image}`
+      ? `https://e-commerce-shopping-cdqi.onrender.com/images/${item.image.split('/').pop()}` 
+      : item.image.startsWith('http') 
+        ? item.image 
+        : `https://e-commerce-shopping-cdqi.onrender.com/${item.image}`
   } 
   alt={item.name} 
-  className="cart-img" // Aapki apni CSS class
+  className="cart-item-image"
   onError={(e) => {
-    e.target.src = "https://placehold.co/100x100?text=No+Image";
+    e.target.src = "https://placehold.co/100x100?text=Reload+Image";
   }}
 />
                     
