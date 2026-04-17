@@ -2,7 +2,7 @@
 
 import 'dotenv/config';
 import express from 'express';
-import dbConnect from './connect/dbconnect.js';
+import dbConnect from './connect/dbConnect.js';
 import userRouter from './routes/userRouter.js';
 import productRouter from "./routes/productRouter.js";
 import orderRouter from './routes/orderRouter.js';
