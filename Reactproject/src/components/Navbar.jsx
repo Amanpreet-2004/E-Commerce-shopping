@@ -8,28 +8,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [cartCount, setCartCount] = useState(0);
 
-
-  // const fetchCartCount = async () => {
-  //   try {
-  //     const userId = localStorage.getItem("userId");
-  //     if (userId && userId !== "undefined" && userId !== "null") {
-  //       // ✅ Corrected URL (Cart.jsx wala endpoint)
-  //       const res = await axios.get(`http://localhost:4644/cart/get/${userId}`);
-        
-  //       // ✅ Corrected Data Key (res.data.body check karein)
-  //       if (res.data.success && Array.isArray(res.data.body)) {
-  //         setCartCount(res.data.body.length);
-  //       } else {
-  //         setCartCount(0);
-  //       }
-  //     } else {
-  //       setCartCount(0);
-  //     }
-  //   } catch (error) {
-  //     console.log("Navbar Error:", error);
-  //     setCartCount(0);
-  //   }
-  // };
 const fetchCartCount = useCallback(async () => {
   const userId = localStorage.getItem("userId");
 
