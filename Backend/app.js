@@ -35,6 +35,7 @@ app.use(cors({
         "https://e-commerce-shopping-2-j2x1.onrender.com", // Aapka Admin Panel
         "http://localhost:5173" // Local testing ke liye
     ],
+     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 app.use(express.urlencoded({ extended: true }));
