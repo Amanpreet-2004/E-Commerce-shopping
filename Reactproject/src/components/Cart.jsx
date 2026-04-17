@@ -234,7 +234,7 @@ const Cart = () => {
                       <div className="quantity-controls">
   <button className="btn-minus"  onClick={() => updateQuantity(item, item.quantity - 1)}>-</button>
   <span>{item.quantity}</span>
-  <button className="btn-plus"  onClick={() => updateQuantity(item, item.quantity - 1)}>+</button> {/* Yahan '+' hona zaroori hai */}
+  <button className="btn-plus"  onClick={() => updateQuantity(item, item.quantity + 1)}>+</button> {/* Yahan '+' hona zaroori hai */}
 </div>
                    
                     

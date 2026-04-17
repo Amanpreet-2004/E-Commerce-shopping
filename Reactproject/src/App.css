@@ -191,11 +191,12 @@ box-shadow: 2px 2px 2px 2px rgb(67, 66, 66);
 }
 
 .checkout-btn {
-  background-color:#ed6b62; ;
+  background-color:#ef867f; ;
     width: 100%;
     max-width: 300px; /* Bahut bada na ho jaye */
     padding: 12px;
     font-size: 18px;
+    margin-left: 10px;
     border-radius: 25px;
     margin-bottom: 20px; /* Niche thodi jagah chhodein */
 }
