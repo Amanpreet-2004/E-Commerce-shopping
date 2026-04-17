@@ -108,7 +108,7 @@ const Cart = () => {
           style={{ minHeight: "60vh" }}
         >
           <div
-            className="card border-0 shadow-lg p-5 text-center rounded-4"
+            className=" checkout-btn card border-0 shadow-lg p-5 text-center rounded-4"
             style={{
               maxWidth: "500px",
               background: "rgba(255, 255, 255, 0.8)",
@@ -129,7 +129,7 @@ const Cart = () => {
             </p>
             <Link
               to="/products"
-              className="btnShop px-5 py-3 rounded-pill  border-0 "
+              className=" px-5 py-3 rounded-pill  border-0 "
               style={{
                 backgroundColor: "#d9534f",
                 color: "white",
@@ -232,9 +232,9 @@ const Cart = () => {
                       </button> */}
 
                       <div className="quantity-controls">
-  <button className="btn-minus">-</button>
+  <button className="btn-minus"  onClick={() => updateQuantity(item, item.quantity - 1)}>-</button>
   <span>{item.quantity}</span>
-  <button className="btn-plus">+</button> {/* Yahan '+' hona zaroori hai */}
+  <button className="btn-plus"  onClick={() => updateQuantity(item, item.quantity - 1)}>+</button> {/* Yahan '+' hona zaroori hai */}
 </div>
                    
                     
