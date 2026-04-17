@@ -77,40 +77,35 @@ color: black;
   gap: 5px;
 }
 
-
-/* Cart Link Container */
-.cart.nav-link {
-    position: relative; /* Badge ko iske hisaab se position karne ke liye */
-    display: inline-flex;
-    align-items: center;
-    padding: 10px;
+/* Wrapper ko relative rakhein */
+.cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-/* Cart Icon Style */
 .cart-icon {
-    width: 30px;  /* Icon size adjust karein */
+    width: 32px;
     height: auto;
     display: block;
 }
 
-/* Cart Badge (Count) Style */
+/* Badge ko icon ke upar absolute position karein */
 .cart-badge {
     position: absolute;
-    top: 0;          /* Icon ke top par */
-    right: 0;        /* Icon ke right edge par */
-    background-color: #f44336; /* Aapka reddish theme */
+    top: -8px;      /* Icon ke top edge se thoda upar */
+    right: -10px;    /* Icon ke right edge se thoda bahar */
+    background-color: #f44336; 
     color: white;
     font-size: 11px;
     font-weight: bold;
-    min-width: 18px;
+    width: 18px;
     height: 18px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 2px;
-    border: 1px solid white; /* Icon se thoda alag dikhne ke liye */
-    transform: translate(25%, -25%); /* Perfect top-right corner placement */
+    align-items: center;
+    z-index: 100;    /* Taaki ye hamesha sabse upar dikhe */
+    border: 2px solid white; /* Isse badge saaf dikhta hai */
 }
 .user-icon {
    align-items: center;
