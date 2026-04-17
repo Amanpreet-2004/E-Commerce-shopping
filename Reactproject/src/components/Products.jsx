@@ -131,7 +131,7 @@ const Product = () => {
   const handleAddToCart = async (product) => {
     const userId = localStorage.getItem("userId");
     if (!userId) {
-      toast.warn("Pehle login karein!");
+      toast.warn("login first!");
       navigate("/login");
       return;
     }

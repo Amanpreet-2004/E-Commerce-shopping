@@ -86,13 +86,51 @@ color: black;
   margin-top: 10px; gap: 15px;
 }
 /* Cart Link Container */
-.cart.nav-link {
+/* .cart.nav-link {
     position: relative !important;
     display: inline-flex !important;
     align-items: center;
     padding: 10px;
-    overflow: visible !important; /* Taaki badge bahar dikh sake */
+    overflow: visible !important; 
     text-decoration: none;
+}
+
+
+.cart-icon {
+    width: 32px;
+    height: auto;
+    display: block;
+    z-index: 1; 
+}
+
+
+.cart-badge {
+    position: absolute !important;
+    top: 14px;        
+    right: -2px;     
+    background-color: #0b0a0a; 
+    color: white !important;
+    font-size: 10px;
+    font-weight: bold;
+    width: 14px;      
+    height: 15px;     
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;     
+    border: 1.5px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: translate(20%, -20%); 
+} */
+
+/* Cart Link Container */
+.cart.nav-link {
+    position: relative !important; /* Ye zaroori hai badge ko position karne ke liye */
+    display: inline-flex !important;
+    align-items: center;
+    padding: 10px;
+    overflow: visible !important; /* Taaki badge cut na ho */
 }
 
 /* Cart Icon */
@@ -100,28 +138,26 @@ color: black;
     width: 32px;
     height: auto;
     display: block;
-    z-index: 1; /* Icon niche rahega */
 }
 
-/* Cart Badge (Count) */
+/* Cart Badge (Count) - Is par dhyan dein */
 .cart-badge {
     position: absolute !important;
-    top: 14px;        /* Thoda aur niche/upar adjust karein */
-    right: -2px;      /* Thoda aur right mein karein */
-    background-color: #0b0a0a; 
+    top: -5px;         /* Icon se thoda upar */
+    right: -5px;       /* Icon se thoda bahar */
+    background-color: #f44336; /* Aapka reddish theme color */
     color: white !important;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
-    width: 14px;      /* Fixed width */
-    height: 15px;     /* Fixed height */
+    width: 20px;       /* Circle size */
+    height: 20px;
     border-radius: 50%;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    z-index: 999;     /* Sabse upar dikhne ke liye */
-    border: 1.5px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transform: translate(20%, -20%); /* Perfect corner positioning */
+    z-index: 10;       /* Sabse upar dikhne ke liye */
+    border: 2px solid white; /* Isse badge saaf dikhta hai */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .user-icon:hover {

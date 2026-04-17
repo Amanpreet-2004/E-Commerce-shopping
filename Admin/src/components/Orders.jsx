@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const API_BASE_URL = "https://e-commerce-shopping-cdqi.onrender.com";
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,7 @@ const Orders = () => {
   };
 
   const cancelOrder = async (orderId) => {
-    if (window.confirm("Kya aap is order ko cancel karna chahte hain?")) {
+    if (window.confirm("Are you to delete this order?")) {
       try {
         const response = await axios.delete(`https://e-commerce-shopping-cdqi.onrender.com/order/cancel/${orderId}`);
         if (response.data.success) {
@@ -71,11 +73,25 @@ const Orders = () => {
                     <div className="d-flex flex-column align-items-center gap-2">
                       {order.items.map((item, i) => (
                         <div key={i} className="d-flex align-items-center p-2 bg-white shadow-sm border" style={{ borderRadius: "12px", width: "220px" }}>
-                          <img 
+                          {/* <img 
                             src={item.image} 
                             alt="" 
                             style={{ width: "45px", height: "45px", borderRadius: "8px", objectFit: "cover", marginRight: "12px" }} 
-                          />
+                          /> */}
+
+
+                          <img 
+      src={
+        item.image.includes("localhost") 
+          ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
+          : `${API_BASE_URL}/${item.image}`
+      } 
+      alt={item.name} 
+      style={{ width: '40px', height: '40px', objectFit: 'contain', borderRadius: '4px' }}
+      onError={(e) => {
+        e.target.src = "https://placehold.co/50x50?text=Item";
+      }}
+    />
                           <div className="text-start">
                             <div className="fw-bold" style={{ fontSize: "0.8rem", color: "#444" }}>{item.name}</div>
                             <div className="text-muted small">Qty: {item.quantity}</div>
