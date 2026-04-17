@@ -113,6 +113,7 @@ app.use("/user", userRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use('/order', orderRouter);
+app.use('/uploads', express.static('uploads'));
 
 // --- Server Start ---
 app.listen(PORT, () => {
