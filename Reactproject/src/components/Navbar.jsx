@@ -105,7 +105,7 @@ const handleLogout = () => {
                 />
                 <sup className="cart-badge">{cartCount}</sup>
               </Link> */}
-              <Link className="cart-container nav-link" to="/cart">
+              <Link className="cart nav-link" to="/cart">
   <div className="cart-icon-wrapper">
     <img
       src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png"

@@ -77,36 +77,7 @@ color: black;
   gap: 5px;
 }
 
-/* Wrapper ko relative rakhein */
-.cart-icon-wrapper {
-    position: relative;
-    display: inline-block;
-}
 
-.cart-icon {
-    width: 32px;
-    height: auto;
-    display: block;
-}
-
-/* Badge ko icon ke upar absolute position karein */
-.cart-badge {
-    position: absolute;
-    top: -8px;      /* Icon ke top edge se thoda upar */
-    right: -10px;    /* Icon ke right edge se thoda bahar */
-    background-color: #f44336; 
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;    /* Taaki ye hamesha sabse upar dikhe */
-    border: 2px solid white; /* Isse badge saaf dikhta hai */
-}
 .user-icon {
    align-items: center;
   width: 30px;
@@ -114,7 +85,44 @@ color: black;
   cursor: pointer;
   margin-top: 10px; gap: 15px;
 }
+/* Cart Link Container */
+.cart.nav-link {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center;
+    padding: 10px;
+    overflow: visible !important; /* Taaki badge bahar dikh sake */
+    text-decoration: none;
+}
 
+/* Cart Icon */
+.cart-icon {
+    width: 32px;
+    height: auto;
+    display: block;
+    z-index: 1; /* Icon niche rahega */
+}
+
+/* Cart Badge (Count) */
+.cart-badge {
+    position: absolute !important;
+    top: -2px;        /* Thoda aur niche/upar adjust karein */
+    right: -2px;      /* Thoda aur right mein karein */
+    background-color: #0b0a0a; 
+    color: white !important;
+    font-size: 10px;
+    font-weight: bold;
+    width: 18px;      /* Fixed width */
+    height: 18px;     /* Fixed height */
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;     /* Sabse upar dikhne ke liye */
+    border: 1.5px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: translate(20%, -20%); /* Perfect corner positioning */
+}
 
 .user-icon:hover {
   transform: scale(1.1);
