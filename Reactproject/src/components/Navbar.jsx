@@ -40,7 +40,7 @@ const fetchCartCount = useCallback(async () => {
   }
 
   try {
-    const res = await axios.get(`http://localhost:4644/cart/get/${userId}`);
+    const res = await axios.get(`https://e-commerce-shopping-cdqi.onrender.com/cart/get/${userId}`);
     if (res.data.success) {
       // Check karein ki response mein data hai ya body
       const items = res.data.data || res.data.body || [];

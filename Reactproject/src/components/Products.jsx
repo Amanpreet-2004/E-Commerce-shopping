@@ -15,7 +15,7 @@ const Product = () => {
   // 3. Backend se fresh data laane ke liye function
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:4644/product/allproducts");
+      const response = await axios.get("https://e-commerce-shopping-cdqi.onrender.com/product/allproducts");
       // Agar backend se array mil raha hai toh hi set karein
       if (response.data) {
         setProducts(response.data); 
@@ -39,7 +39,7 @@ const Product = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4644/cart/add", {
+      const response = await axios.post("https://e-commerce-shopping-cdqi.onrender.com/cart/add", {
         userId: userId,
         productId: String(product._id || product.id), // MongoDB use kar rahe ho toh _id hoga
         name: product.name,

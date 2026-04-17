@@ -13,7 +13,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:4644/user/forgot-password", { email });
+      const res = await axios.post("https://e-commerce-shopping-cdqi.onrender.com/user/forgot-password", { email });
       
       if (res.data.status === 200) {
         toast.success("A password reset link has been sent to your email address!");

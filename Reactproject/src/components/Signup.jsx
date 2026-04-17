@@ -26,7 +26,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:4644/user/signup",
+        "https://e-commerce-shopping-cdqi.onrender.com/user/signup",
         data
       );
 

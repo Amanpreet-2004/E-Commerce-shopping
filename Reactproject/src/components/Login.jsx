@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // 1. Backend API call
-      const res = await axios.post("http://localhost:4644/user/login", data);
+      const res = await axios.post("https://e-commerce-shopping-cdqi.onrender.com/user/login", data);
 
       // 2. Success check
       if (res.data.success) {
@@ -61,7 +61,7 @@ const Login = () => {
 // }
 if (userData.role === "admin") {
     // Port 5174 par bhej rahe hain token ke saath
-    const adminUrl = `http://localhost:5173/?token=${token}&role=${userData.role}`;
+    const adminUrl = `https://your-frontend-name.onrender.com/?token=${token}&role=${userData.role}`;
     window.location.href = adminUrl;
 }
 else {

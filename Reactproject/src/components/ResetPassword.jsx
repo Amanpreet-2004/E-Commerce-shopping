@@ -10,7 +10,7 @@ const ResetPassword = () => {
     const handleReset = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:4644/user/reset-password/${token}`, { password });
+            const res = await axios.post(`https://e-commerce-shopping-cdqi.onrender.com/user/reset-password/${token}`, { password });
             
             if (res.data.success) {
                 alert("Password successfully reset! Now login.");

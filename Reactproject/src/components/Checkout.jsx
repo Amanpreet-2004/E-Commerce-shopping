@@ -22,7 +22,7 @@ const Checkout = () => {
     const fetchCart = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(`http://localhost:4644/cart/get/${userId}`);
+        const response = await axios.get(`https://e-commerce-shopping-cdqi.onrender.com/cart/get/${userId}`);
         if (response.data && response.data.success) {
           // Aapka data 'body' mein aa raha hai
           const itemsArray = response.data.body || [];
@@ -62,14 +62,14 @@ const Checkout = () => {
 
     try {
   // 1. Database mein Order save karein (Taki Admin ko dikhe)
-  const response = await axios.post("http://localhost:4644/order/place", orderPayload);
+  const response = await axios.post("https://e-commerce-shopping-cdqi.onrender.com/order/place", orderPayload);
 
   if (response.data.success) {
     const userId = localStorage.getItem("userId");
 
     // 2. IMPORTANT: Order success hone par Cart empty karein
     try {
-      await axios.delete(`http://localhost:4644/cart/clear/${userId}`);
+      await axios.delete(`https://e-commerce-shopping-cdqi.onrender.com/cart/clear/${userId}`);
       
       // Navbar badge ko instant 0 karne ke liye event dispatch karein
       window.dispatchEvent(new Event("cartUpdated"));
@@ -81,7 +81,7 @@ const Checkout = () => {
 
     // 3. Email bhejne ki koshish karein
     try {
-      await axios.post("http://localhost:4644/send-email", formData);
+      await axios.post("https://e-commerce-shopping-cdqi.onrender.com/send-email", formData);
       toast.success("Confirmation mail sent!");
     } catch (emailErr) {
       console.warn("Mail nahi gayi, par order aur cart clean-up ho gaya.");
