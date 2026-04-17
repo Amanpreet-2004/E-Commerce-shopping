@@ -1,15 +1,15 @@
 
 
 import { useState } from 'react'
-import Navbar from './components/Navbar'
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Category from './components/Category';
 import About from './components/About';
 import Product from './components/Products';
-import Footer from './components/Footer';
+
 import Signup from './components/Signup';
-import Cart from './components/cart';
+import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Login from './components/Login';
 import OrderDone from './components/OrderDone';
