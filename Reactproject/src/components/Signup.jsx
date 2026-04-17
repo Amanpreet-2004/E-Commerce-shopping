@@ -114,7 +114,7 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="btn mb-4 text-white fw-bold shadow-sm " 
+                className="btnSign mb-4 text-white fw-bold shadow-sm " 
                 style={{ 
                   borderRadius: "10px", 
                   height: "50px", 
