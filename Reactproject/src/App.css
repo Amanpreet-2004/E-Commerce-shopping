@@ -145,6 +145,24 @@ box-shadow: 2px 2px 2px 2px rgb(67, 66, 66);
   background-color:rgb(248, 103, 103) ;
 box-shadow: 2px 2px 2px 2px rgb(67, 66, 66);
 }
+
+
+/* Cart item image ko control karne ke liye */
+.cart-item-image {
+    width: 120px;          /* Apne hisaab se size set karein */
+    height: 120px;         /* Square image ke liye */
+    object-fit: contain;   /* Isse image stretch nahi hogi, box mein fit rahegi */
+    border-radius: 8px;    /* Thoda round corners ke liye */
+    background-color: #fff; /* Agar image transparent hai toh piche white background */
+}
+
+/* Mobile ke liye thoda chota size */
+@media (max-width: 480px) {
+    .cart-item-image {
+        width: 80px;
+        height: 80px;
+    }
+}
 .btnCheck{
   margin: 20px 50px;
   background-color: rgb(201, 84, 84);
