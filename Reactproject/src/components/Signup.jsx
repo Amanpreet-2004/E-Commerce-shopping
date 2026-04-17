@@ -114,12 +114,12 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="btn mb-4 text-white fw-bold shadow-sm" 
+                className="btn mb-4 text-white fw-bold shadow-sm " 
                 style={{ 
                   borderRadius: "10px", 
                   height: "50px", 
                   backgroundColor: "#f56a6a", // Reddish theme match
-                  border: "none"
+                  border: "none", width:"200px"
                 }}
               >
                 Sign Up

@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../App.css';
 import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
-
+const API_BASE_URL = "https://e-commerce-shopping-cdqi.onrender.com";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -143,7 +144,7 @@ const Cart = () => {
               >
                 <div className="row g-0 align-items-center">
                   <div className="col-md-3">
-                    <img
+                    {/* <img
                       src={item.image}
                       className="img-fluid p-2 rounded-4"
                       alt={item.name}
@@ -152,7 +153,16 @@ const Cart = () => {
                         width: "100%",
                         objectFit: "cover",
                       }}
-                    />
+                    /> */}
+
+                    <img 
+  src={item.image.startsWith('http') ? item.image : `${API_BASE_URL}/${item.image}`} 
+  alt={item.name} 
+  className="cart-product-image" 
+  onError={(e) => {
+    e.target.src = "https://placehold.co/100x100?text=No+Image";
+  }}
+/>
                   </div>
                   <div
                     className=" col-8 col-md-6 p-3"
@@ -195,7 +205,7 @@ const Cart = () => {
 
                       {/* Plus Button */}
                       <button
-                        className="btn btn-sm btn-outline-danger rounded-circle d-flex align-items-center justify-content-center"
+                        className="btn btn-sm btn-outline-danger rounded-circle d-flex align-items-center justify-content-center btn-plus-minus"
                         style={{
                           width: "30px",
                           height: "30px",
@@ -205,8 +215,8 @@ const Cart = () => {
                         }}
                         onClick={() => updateQuantity(item, item.quantity + 1)}
                       >
-                        {" "}
-                        +{" "}
+                       
+                        +
                       </button>
                     </div>
                     

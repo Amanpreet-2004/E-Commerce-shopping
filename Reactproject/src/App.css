@@ -187,6 +187,26 @@ h4{
 }
 
 
+.btn-plus-minus {
+  background-color: #f44336; /* Aapka reddish theme */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 30px; /* Isse button mobile par dabega nahi */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .cart-item-row {
+    flex-direction: column; /* Mobile par stack ho jaye */
+    text-align: center;
+  }
+}
+
 .container1 {
 
 margin-top: 60px;
