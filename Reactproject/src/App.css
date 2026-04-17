@@ -124,40 +124,43 @@ color: black;
     transform: translate(20%, -20%); 
 } */
 
-/* Cart Link Container */
+/* Cart Link Container - Isko flex banayein taaki icon center mein rahe */
 .cart.nav-link {
-    position: relative !important; /* Ye zaroori hai badge ko position karne ke liye */
-    display: inline-flex !important;
+    position: relative !important;
+    display: flex !important;
     align-items: center;
-    padding: 10px;
-    overflow: visible !important; /* Taaki badge cut na ho */
+    justify-content: center;
+    width: 45px;  /* Fixed width taaki badge ko space mile */
+    height: 45px;
+    padding: 0;
+    overflow: visible !important; /* Ye zaroori hai badge dikhne ke liye */
 }
 
 /* Cart Icon */
 .cart-icon {
-    width: 32px;
+    width: 30px;
     height: auto;
-    display: block;
 }
 
-/* Cart Badge (Count) - Is par dhyan dein */
+/* Cart Badge (Count) - Red circle icon ke upar */
 .cart-badge {
     position: absolute !important;
-    top: -5px;         /* Icon se thoda upar */
-    right: -5px;       /* Icon se thoda bahar */
-    background-color: #f44336; /* Aapka reddish theme color */
+    top: 0;            /* Upar ki taraf chipkayein */
+    right: 0;          /* Right side mein chipkayein */
+    background-color: #000000; 
     color: white !important;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
-    width: 20px;       /* Circle size */
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    z-index: 10;       /* Sabse upar dikhne ke liye */
-    border: 2px solid white; /* Isse badge saaf dikhta hai */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 5;        /* Icon ke upar rahega */
+    border: 1.5px solid white;
+    /* Isse badge icon ke corner par perfect set hoga */
+    transform: translate(15%, -15%); 
 }
 
 .user-icon:hover {
