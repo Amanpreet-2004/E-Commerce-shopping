@@ -86,11 +86,18 @@ const AllProduct = () => {
                 allproducts.map((product, index) => (
                   <tr key={index} className="border-bottom">
                     <td className="py-3">
-                      <img src={
-    product.image.includes("localhost") 
-      ? `${API_BASE_URL}/upload/images/${product.image.split('/').pop()}` 
-      : `${API_BASE_URL}/${product.image}`
-  } alt="" style={{ width: '60px', height: '60px', borderRadius: '12px', objectFit: 'cover', border: "1px solid #eee" }} />
+                      <img 
+  src={
+    product.image.startsWith('http') && !product.image.includes('localhost')
+      ? product.image 
+      : `${API_BASE_URL}/${product.image.replace('http://localhost:4644/', '')}`
+  } 
+  alt={product.name} 
+  style={{ width: "50px", height: "50px", objectFit: "contain" }}
+  onError={(e) => {
+    e.target.src = "https://placehold.co/100x100?text=No+Image";
+  }}
+/>
                     </td>
                     <td className="fw-semibold">{product.name}</td>
                     <td className="fw-bold text-dark">${product.price}</td>
