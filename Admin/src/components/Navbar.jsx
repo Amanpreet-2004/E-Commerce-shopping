@@ -38,7 +38,7 @@ const Navbar = () => {
     // 2. Frontend port par redirect karein (Example: 5174)
     // window.location.href se poora page refresh ho jayega
     setTimeout(() => {
-      window.location.href = "http://localhost:5174/login"; 
+      window.location.href = "https://e-commerce-shopping-1-wfyu.onrender.com/login"; 
     }, 1000); // 1 sec ka delay taaki toast message dikh jaye
   };
 

@@ -1,127 +1,5 @@
 
 
-// import React, { useState } from 'react';
-
-// const AddProduct = () => {
-//   const [image, setImage] = useState(false);
-//   const [productDetails, setProductDetails] = useState({
-//     name: "",
-//     category: "women",
-//    price:""
-//   });
-
-//   const imageHandler = (e) => {
-//     setImage(e.target.files[0]);
-//   }
-
-//   const changeHandler = (e) => {
-//     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
-//   }
-
-//   const Add_Product = async () => {
-//     // Basic Validation: Check if image is selected
-//     if(!image) {
-//         alert("Please select an image first");
-//         return;
-//     }
-
-//     let responseData;
-//     let product = { ...productDetails }; // Create a fresh copy
-
-//     let formData = new FormData();
-//     formData.append('product', image);
-
-//     try {
-//       // 1. Uploading the image first
-//       const uploadResp = await fetch('http://localhost:4644/upload', {
-//         method: 'POST',
-//         headers: { Accept: 'application/json' },
-//         body: formData,
-//       });
-//       responseData = await uploadResp.json();
-
-//       if (responseData.success) {
-//         product.image = responseData.image_url;
-
-//         // 2. Saving Product to Database
-//         const addResp = await fetch('http://localhost:4644/product/add', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify(product),
-//         });
-        
-//         const finalData = await addResp.json();
-        
-//         if(finalData.success) {
-//             alert("Product Added Successfully!");
-//             // Form Reset karein
-//             setProductDetails({
-//                 name: "",
-//                 category: "women",
-//               price:""
-//             });
-//             setImage(false);
-//         } else {
-//             alert("Failed to add product");
-//         }
-//       } else {
-//         alert("Image upload failed");
-//       }
-//     } catch (error) {
-//       console.error("Error adding product:", error);
-//       alert("Server error, please check if backend is running");
-//     }
-//   }
-
-//   return (
-//     <div className="admin-card shadow-sm p-4">
-//       <h3 className="mb-4 fw-bold">Add New Product</h3>
-//       <div className="mb-3">
-//         <label className="form-label fw-semibold">Product Title</label>
-//         <input value={productDetails.name} onChange={changeHandler} type="text" name="name" className="form-control" placeholder="Type here" />
-//       </div>
-      
-//       <div className="row">
-//         <div className="col-md-6 mb-3">
-//           <label className="form-label fw-semibold">Price</label>
-//           <input value={productDetails.price} onChange={changeHandler} type="number" name="price" className="form-control" placeholder="$" />
-//         </div>
-        
-//       </div>
-
-      
-
-      
-//       <div className="mb-4 text-center">
-//   {/* Label ki 'htmlFor' aur input ki 'id' match honi chahiye */}
-//   <label htmlFor="file-input" style={{ cursor: 'pointer' }}>
-//     <img 
-//       src={image ? URL.createObjectURL(image) : "https://via.placeholder.com/120"} 
-//       alt="Upload Preview" 
-//       style={{ width: '120px', borderRadius: '10px', border: '1px solid #ddd' }} 
-//     />
-//     <p className="text-muted small mt-2">Click image to upload</p>
-//   </label>
-
-//   {/* Hidden Input Field */}
-//   <input 
-//     onChange={imageHandler} 
-//     type="file" 
-//     name="product" // Backend ke upload.single('product') se match karein
-//     id="file-input" 
-//     hidden 
-//   />
-// </div>
-
-//       <button onClick={Add_Product} className="btn btn-danger py-2 w-100 fw-bold">ADD PRODUCT</button>
-//     </div>
-//   );
-// };
-
-// export default AddProduct;
-
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 const AddProduct = () => {
@@ -152,7 +30,7 @@ const AddProduct = () => {
     formData.append('product', image);
 
     try {
-      const uploadResp = await fetch('http://localhost:4644/upload', {
+      const uploadResp = await fetch('https://e-commerce-shopping-cdqi.onrender.com/upload', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: formData,
@@ -162,7 +40,7 @@ const AddProduct = () => {
       if (responseData.success) {
         product.image = responseData.image_url;
 
-        const addResp = await fetch('http://localhost:4644/product/add', {
+        const addResp = await fetch('https://e-commerce-shopping-cdqi.onrender.com/product/add', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(product),

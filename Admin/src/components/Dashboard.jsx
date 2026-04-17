@@ -24,12 +24,12 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       
       // Dashboard Stats Fetch karein
-      const resStats = await axios.get("http://localhost:4644/order/dashboard-stats", {
+      const resStats = await axios.get("https://e-commerce-shopping-cdqi.onrender.com/order/dashboard-stats", {
         headers: { token }
       });
 
       // Recent Users Fetch karein (aapka existing users route)
-      const resUsers = await axios.get("http://localhost:4644/user/findUsers", {
+      const resUsers = await axios.get("https://e-commerce-shopping-cdqi.onrender.com/user/findUsers", {
         headers: { token }
       });
 

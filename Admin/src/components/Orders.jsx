@@ -11,7 +11,7 @@ const Orders = () => {
   const fetchAllOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:4644/order/allorders");
+      const response = await axios.get("https://e-commerce-shopping-cdqi.onrender.com/order/allorders");
       if (response.data && response.data.success) {
         setOrders(response.data.data || []);
       }
@@ -25,7 +25,7 @@ const Orders = () => {
   const cancelOrder = async (orderId) => {
     if (window.confirm("Kya aap is order ko cancel karna chahte hain?")) {
       try {
-        const response = await axios.delete(`http://localhost:4644/order/cancel/${orderId}`);
+        const response = await axios.delete(`https://e-commerce-shopping-cdqi.onrender.com/order/cancel/${orderId}`);
         if (response.data.success) {
           toast.success(response.data.message || "Order Cancelled!");
           fetchAllOrders(); 

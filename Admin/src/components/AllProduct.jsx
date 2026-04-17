@@ -9,7 +9,7 @@ const AllProduct = () => {
 
   const fetchInfo = async () => {
     try {
-      const res = await fetch('http://localhost:4644/product/allproducts');
+      const res = await fetch('https://e-commerce-shopping-cdqi.onrender.com/product/allproducts');
       if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
       const data = await res.json();
       setAllProducts(data);
@@ -25,7 +25,7 @@ const AllProduct = () => {
   const remove_product = async (id) => {
     if (window.confirm("Are u want to delete this product?")) {
       try {
-        const response = await fetch('http://localhost:4644/product/removeproduct', {
+        const response = await fetch('https://e-commerce-shopping-cdqi.onrender.com/product/removeproduct', {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: id })
@@ -49,7 +49,7 @@ const AllProduct = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:4644/product/update/${editingProduct._id}`, {
+      const response = await fetch(`https://e-commerce-shopping-cdqi.onrender.com/product/update/${editingProduct._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
