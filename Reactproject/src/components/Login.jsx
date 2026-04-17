@@ -61,7 +61,7 @@ const Login = () => {
 // }
 if (userData.role === "admin") {
     // Port 5174 par bhej rahe hain token ke saath
-    const adminUrl = `https://your-frontend-name.onrender.com/?token=${token}&role=${userData.role}`;
+    const adminUrl = `https://e-commerce-shopping-2-j2x1.onrender.com/?token=${token}&role=${userData.role}`;
     window.location.href = adminUrl;
 }
 else {
