@@ -174,7 +174,7 @@ const Product = () => {
                     
                     {/* IMAGE LOGIC FIX */}
                     <img 
-                      src={product.image.startsWith('http') ? product.image : `${API_BASE_URL}/${product.image}`} 
+                      src={ `${API_BASE_URL}/${product.image}`}
                       alt={product.name} 
                       className="imgpro shadow-sm" 
                       onError={(e) => {
