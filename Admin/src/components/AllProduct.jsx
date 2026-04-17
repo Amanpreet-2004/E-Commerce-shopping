@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+
+const API_BASE_URL = "https://e-commerce-shopping-cdqi.onrender.com";
 const AllProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null); 
@@ -84,7 +86,11 @@ const AllProduct = () => {
                 allproducts.map((product, index) => (
                   <tr key={index} className="border-bottom">
                     <td className="py-3">
-                      <img src={product.image} alt="" style={{ width: '60px', height: '60px', borderRadius: '12px', objectFit: 'cover', border: "1px solid #eee" }} />
+                      <img src={
+    product.image.includes("localhost") 
+      ? `${API_BASE_URL}/upload/images/${product.image.split('/').pop()}` 
+      : `${API_BASE_URL}/${product.image}`
+  } alt="" style={{ width: '60px', height: '60px', borderRadius: '12px', objectFit: 'cover', border: "1px solid #eee" }} />
                     </td>
                     <td className="fw-semibold">{product.name}</td>
                     <td className="fw-bold text-dark">${product.price}</td>
