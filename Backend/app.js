@@ -24,9 +24,17 @@ app.use(express.json());
 // }));
 
 // server.js mein cors ko aise update karein
+// app.use(cors({
+//     origin: ["http://localhost:5173", "http://localhost:5174"], 
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true
+// }));
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"], 
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: [
+        "https://e-commerce-shopping-1-wfyu.onrender.com", // Aapka Frontend
+        "https://e-commerce-shopping-2-j2x1.onrender.com", // Aapka Admin Panel
+        "http://localhost:5173" // Local testing ke liye
+    ],
     credentials: true
 }));
 app.use(express.urlencoded({ extended: true }));
