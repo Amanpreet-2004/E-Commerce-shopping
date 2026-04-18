@@ -74,9 +74,29 @@ const Orders = () => {
                     <div className="d-flex flex-column align-items-center gap-2">
                       {order.items.map((item, i) => (
                         <div key={i} className="d-flex align-items-center p-2 bg-white shadow-sm border" style={{ borderRadius: "12px", width: "220px" }}>
-                       
-// Image tag in Orders.jsx
-<img 
+                 <img 
+  src={
+    item.image.startsWith('http') 
+      ? item.image 
+      : item.image.includes('localhost')
+        ? `https://e-commerce-shopping-cdqi.onrender.com/images/${item.image.split('/').pop()}`
+        : `https://e-commerce-shopping-cdqi.onrender.com/images/${item.image}` // Yahan /images/ add kiya hai
+  } 
+  alt={item.name} 
+  className="order-item-image"
+  onError={(e) => {
+    // Agar upar wala fail ho, toh bina /images/ ke try karein
+    if (!e.target.dataset.tried) {
+      e.target.dataset.tried = "true";
+      e.target.src = `https://e-commerce-shopping-cdqi.onrender.com/${item.image}`;
+    } else {
+      e.target.src = "https://placehold.co/100x100?text=Product";
+    }
+  }}
+  style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "8px" }}
+/>      
+
+{/* <img 
   src={
     item.image.startsWith('http') 
       ? item.image 
@@ -87,7 +107,7 @@ const Orders = () => {
   alt={item.name}
   onError={(e) => { e.target.src = "https://placehold.co/50x50?text=Product"; }}
   style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "8px" }}
-/>
+/> */}
                           <div className="text-start">
                             <div className="fw-bold" style={{ fontSize: "0.8rem", color: "#444" }}>{item.name}</div>
                             <div className="text-muted small">Qty: {item.quantity}</div>
