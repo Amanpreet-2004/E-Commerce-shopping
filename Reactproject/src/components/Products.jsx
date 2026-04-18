@@ -76,21 +76,37 @@ const Product = () => {
               products.map((product) => (
                 <div key={product._id || product.id} className="col">
                   <div className="product-card-inner pb-3">
-            const API_BASE_URL = "https://e-commerce-shopping-cdqi.onrender.com";
+                    
+                    {/* IMAGE LOGIC FIX */}
+                    {/* <img 
+                      src={
+    product.image.includes("localhost") 
+      ? `${API_BASE_URL}/images/${product.image.split('/').pop()}` 
+      : `${API_BASE_URL}/${product.image}`
+  }
+                      alt={product.name} 
+                      className="imgpro shadow-sm" 
+                      onError={(e) => {
+                        e.target.onerror = null; 
+                        e.target.src = "https://placehold.co/400x400?text=Product+Image";
+                      }}
+                    /> */}
 
-// Map ke andar image tag aise likhein:
-<img 
-  src={
-    item.image.startsWith('http') 
-      ? item.image                                     // Agar pura URL hai (Cloudinary/S3)
-      : item.image.includes('localhost')               // Agar purana localhost link hai
-        ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
-        : `${API_BASE_URL}/${item.image.replace(/^\//, '')}` // Live path fix
-  } 
-  alt={item.name}
-  onError={(e) => { e.target.src = "https://placehold.co/50x50?text=Order"; }}
-  style={{ width: "40px", height: "40px", objectFit: "cover", borderRadius: "5px" }}
-/>
+                    {order.products.map((product, index) => ( // Yahan 'product' variable hai
+  <div key={index}>
+    <img 
+      src={
+        product.image.includes("localhost") 
+          ? `${API_BASE_URL}/upload/images/${product.image.split('/').pop()}` 
+          : `${API_BASE_URL}/${product.image}`
+      } 
+      alt={product.name}
+      onError={(e) => { e.target.src = "https://placehold.co/50x50?text=Product"; }}
+      style={{ width: "45px", borderRadius: "5px" }}
+    />
+    <p>{product.name}</p>
+  </div>
+))}
 
                     <h5 className="mt-3 fw-bold">{product.name}</h5>
                     <h6 className="textf">Price: ${product.price}</h6>
