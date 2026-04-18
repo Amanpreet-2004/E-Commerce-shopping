@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../App.css';
 import { toast } from "react-toastify";
 
 const API_BASE_URL = "https://e-commerce-shopping-cdqi.onrender.com";
@@ -73,31 +74,20 @@ const Orders = () => {
                     <div className="d-flex flex-column align-items-center gap-2">
                       {order.items.map((item, i) => (
                         <div key={i} className="d-flex align-items-center p-2 bg-white shadow-sm border" style={{ borderRadius: "12px", width: "220px" }}>
-                          {/* <img 
-                            src={item.image} 
-                            alt="" 
-                            style={{ width: "45px", height: "45px", borderRadius: "8px", objectFit: "cover", marginRight: "12px" }} 
-                          /> */}
+                       
 
-
-                          {/* <img 
-      src={
-        item.image.includes("localhost") 
-          ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
-          : `${API_BASE_URL}/${item.image}`
-      } 
-      alt={item.name} 
-      style={{ width: '40px', height: '40px', objectFit: 'contain', borderRadius: '4px' }}
-      onError={(e) => {
-        e.target.src = "https://placehold.co/50x50?text=Item";
-      }}
-    /> */}
-
-    <img 
-  src={item.image.startsWith('http') ? item.image : `https://e-commerce-shopping-cdqi.onrender.com/${item.image}`} 
-  alt={item.name}
-  onError={(e) => { e.target.src = "https://placehold.co/50x50?text=Product"; }}
-  style={{ width: "40px", borderRadius: "5px" }}
+<img 
+  src={
+    item.image.includes("localhost") 
+      ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
+      : `${API_BASE_URL}/${item.image}`
+  } 
+  alt={item.name} 
+  className="order-item-img" 
+  onError={(e) => {
+    e.target.src = "https://placehold.co/50x50?text=Product";
+  }}
+  style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "5px" }}
 />
                           <div className="text-start">
                             <div className="fw-bold" style={{ fontSize: "0.8rem", color: "#444" }}>{item.name}</div>
