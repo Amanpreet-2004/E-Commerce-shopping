@@ -76,78 +76,29 @@ color: black;
   display: flex;
   gap: 5px;
 }
-
-
-.user-icon {
-   align-items: center;
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
-  margin-top: 10px; gap: 15px;
-}
 /* Cart Link Container */
-/* .cart.nav-link {
+.cart.nav-link {
     position: relative !important;
     display: inline-flex !important;
     align-items: center;
-    padding: 10px;
-    overflow: visible !important; 
+    padding: 8px 12px;
+    overflow: visible !important; /* Taaki badge upar se cut na ho */
     text-decoration: none;
-}
-
-
-.cart-icon {
-    width: 32px;
-    height: auto;
-    display: block;
-    z-index: 1; 
-}
-
-
-.cart-badge {
-    position: absolute !important;
-    top: 14px;        
-    right: -2px;     
-    background-color: #0b0a0a; 
-    color: white !important;
-    font-size: 10px;
-    font-weight: bold;
-    width: 14px;      
-    height: 15px;     
-    border-radius: 50%;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;     
-    border: 1.5px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transform: translate(20%, -20%); 
-} */
-
-/* Cart Link Container - Isko flex banayein taaki icon center mein rahe */
-.cart.nav-link {
-    position: relative !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 45px;  /* Fixed width taaki badge ko space mile */
-    height: 45px;
-    padding: 0;
-    overflow: visible !important; /* Ye zaroori hai badge dikhne ke liye */
 }
 
 /* Cart Icon */
 .cart-icon {
-    width: 30px;
+    width: 30px; /* Standard size */
     height: auto;
+    display: block;
 }
 
-/* Cart Badge (Count) - Red circle icon ke upar */
+/* Cart Badge (Red Circle) */
 .cart-badge {
     position: absolute !important;
-    top: 0;            /* Upar ki taraf chipkayein */
-    right: 0;          /* Right side mein chipkayein */
-    background-color: #000000; 
+    top: 2px;          /* Icon ke thoda upar */
+    right: 2px;        /* Icon ke edge par */
+    background-color: #f44336; /* Proper Red */
     color: white !important;
     font-size: 10px;
     font-weight: bold;
@@ -157,11 +108,21 @@ color: black;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    z-index: 5;        /* Icon ke upar rahega */
-    border: 1.5px solid white;
-    /* Isse badge icon ke corner par perfect set hoga */
-    transform: translate(15%, -15%); 
+    z-index: 10;
+    border: 1.5px solid white; /* Isse badge saaf chamakta hai */
+    /* Positioning fix */
+    transform: translate(25%, -25%); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
+.user-icon {
+   align-items: center;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  margin-top: 10px; gap: 15px;
+}
+
 
 .user-icon:hover {
   transform: scale(1.1);
