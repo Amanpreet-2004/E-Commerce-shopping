@@ -114,6 +114,9 @@ app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use('/order', orderRouter);
 app.use('/uploads', express.static('uploads'));
+// Backend code mein ye line honi zaroori hai:
+app.use('/images', express.static('upload/images')); 
+// Ya phir jo bhi aapka folder name hai
 
 // --- Server Start ---
 app.listen(PORT, () => {
