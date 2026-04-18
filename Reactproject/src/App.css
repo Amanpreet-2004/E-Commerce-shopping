@@ -85,43 +85,36 @@ color: black;
   cursor: pointer;
   margin-top: 10px; gap: 15px;
 }
-/* Cart Link Container */
-.cart.nav-link {
-    position: relative !important;
-    display: inline-flex !important;
-    align-items: center;
-    padding: 10px;
-    overflow: visible !important; /* Taaki badge bahar dikh sake */
-    text-decoration: none;
+.cart-container {
+  position: relative; /* Sabse important: Anchor point */
+  display: inline-block; /* Ya flex use karein */
+  width: fit-content;
+  padding: 5px;
 }
 
-/* Cart Icon */
 .cart-icon {
-    width: 32px;
-    height: auto;
-    display: block;
-    z-index: 1; /* Icon niche rahega */
+  width:25px;
+  height: 30px;
+  display: block; /* Taki extra space na le niche */
 }
 
-/* Cart Badge (Count) */
 .cart-badge {
-    position: absolute !important;
-    top: -5px;        /* Thoda aur niche/upar adjust karein */
-    right: -2px;      /* Thoda aur right mein karein */
-    background-color: #0b0a0a; 
-    color: white !important;
-    font-size: 10px;
-    font-weight: bold;
-    width: 14px;      /* Fixed width */
-    height: 15px;     /* Fixed height */
-    border-radius: 50%;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;     /* Sabse upar dikhne ke liye */
-    border: 1.5px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transform: translate(20%, -20%); /* Perfect corner positioning */
+  position: absolute;
+  top: 4px;       /* Icon ke bilkul top-right corner par */
+  right: 4px;
+  background-color: rgb(13, 12, 12); /* Color visible rakhne ke liye */
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(25%, -25%); /* Isse badge thoda bahar ki taraf nikla hua dikhega */
+  z-index: 10;
+  overflow: hidden;
 }
 
 .user-icon:hover {

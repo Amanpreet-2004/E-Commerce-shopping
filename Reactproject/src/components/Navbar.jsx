@@ -105,16 +105,13 @@ const handleLogout = () => {
                 />
                 <sup className="cart-badge">{cartCount}</sup>
               </Link> */}
-              <Link className="cart nav-link" to="/cart">
-  <div className="cart-icon-wrapper">
-    <img
-      src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png"
-      className="cart-icon"
-      alt="cart"
-    />
-    {/* Agar count 0 se bada hai tabhi dikhayein */}
-    {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-  </div>
+   <Link className="cart-container nav-link" to="/cart">
+  <img
+    src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png"
+    className="cart-icon"
+    alt="cart"
+  />
+  <span className="cart-badge">{cartCount}</span>
 </Link>
             </li>
 
