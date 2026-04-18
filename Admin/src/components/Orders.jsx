@@ -75,19 +75,17 @@ const Orders = () => {
                       {order.items.map((item, i) => (
                         <div key={i} className="d-flex align-items-center p-2 bg-white shadow-sm border" style={{ borderRadius: "12px", width: "220px" }}>
                        
-
 <img 
   src={
-    item.image.includes("localhost") 
-      ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
-      : `${API_BASE_URL}/${item.image}`
+    item.image.startsWith('http') 
+      ? item.image                                     // Agar pura URL hai (Cloudinary/S3)
+      : item.image.includes('localhost')               // Agar purana localhost link hai
+        ? `${API_BASE_URL}/upload/images/${item.image.split('/').pop()}` 
+        : `${API_BASE_URL}/${item.image.replace(/^\//, '')}` // Live path fix
   } 
-  alt={item.name} 
-  className="order-item-img" 
-  onError={(e) => {
-    e.target.src = "https://placehold.co/50x50?text=Product";
-  }}
-  style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "5px" }}
+  alt={item.name}
+  onError={(e) => { e.target.src = "https://placehold.co/50x50?text=Order"; }}
+  style={{ width: "40px", height: "40px", objectFit: "cover", borderRadius: "5px" }}
 />
                           <div className="text-start">
                             <div className="fw-bold" style={{ fontSize: "0.8rem", color: "#444" }}>{item.name}</div>
