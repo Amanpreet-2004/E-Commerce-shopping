@@ -76,24 +76,25 @@ const Orders = () => {
                         <div key={i} className="d-flex align-items-center p-2 bg-white shadow-sm border" style={{ borderRadius: "12px", width: "220px" }}>
                  <img 
   src={
-    item.image.startsWith('http') 
+    // Case 1: Agar image full URL hai (e.g. Firebase ya Cloudinary)
+    item.image.startsWith('http') && !item.image.includes('localhost')
       ? item.image 
-      : item.image.includes('localhost')
-        ? `https://e-commerce-shopping-cdqi.onrender.com/images/${item.image.split('/').pop()}`
-        : `https://e-commerce-shopping-cdqi.onrender.com/images/${item.image}` // Yahan /images/ add kiya hai
+      : // Case 2: Agar path mein localhost hai ya sirf filename hai
+        `https://e-commerce-shopping-cdqi.onrender.com/images/${item.image.split('/').pop()}`
   } 
   alt={item.name} 
   className="order-item-image"
   onError={(e) => {
-    // Agar upar wala fail ho, toh bina /images/ ke try karein
+    // Agar upar wala URL fail ho jaye toh ye fallback try karega
     if (!e.target.dataset.tried) {
       e.target.dataset.tried = "true";
       e.target.src = `https://e-commerce-shopping-cdqi.onrender.com/${item.image}`;
     } else {
+      // Dono fail hone par placeholder
       e.target.src = "https://placehold.co/100x100?text=Product";
     }
   }}
-  style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "8px" }}
+  style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "8px", border: "1px solid #eee" }}
 />      
 
 {/* <img 
