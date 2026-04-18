@@ -76,44 +76,7 @@ color: black;
   display: flex;
   gap: 5px;
 }
-/* Cart Link Container */
-.cart.nav-link {
-    position: relative !important;
-    display: inline-flex !important;
-    align-items: center;
-    padding: 8px 12px;
-    overflow: visible !important; /* Taaki badge upar se cut na ho */
-    text-decoration: none;
-}
 
-/* Cart Icon */
-.cart-icon {
-    width: 30px; /* Standard size */
-    height: auto;
-    display: block;
-}
-
-/* Cart Badge (Red Circle) */
-.cart-badge {
-    position: absolute !important;
-    top: 2px;          /* Icon ke thoda upar */
-    right: 2px;        /* Icon ke edge par */
-    background-color: #f44336; /* Proper Red */
-    color: white !important;
-    font-size: 10px;
-    font-weight: bold;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    border: 1.5px solid white; /* Isse badge saaf chamakta hai */
-    /* Positioning fix */
-    transform: translate(25%, -25%); 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
 
 .user-icon {
    align-items: center;
@@ -122,7 +85,44 @@ color: black;
   cursor: pointer;
   margin-top: 10px; gap: 15px;
 }
+/* Cart Link Container */
+.cart.nav-link {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center;
+    padding: 10px;
+    overflow: visible !important; /* Taaki badge bahar dikh sake */
+    text-decoration: none;
+}
 
+/* Cart Icon */
+.cart-icon {
+    width: 32px;
+    height: auto;
+    display: block;
+    z-index: 1; /* Icon niche rahega */
+}
+
+/* Cart Badge (Count) */
+.cart-badge {
+    position: absolute !important;
+    top: -5px;        /* Thoda aur niche/upar adjust karein */
+    right: -2px;      /* Thoda aur right mein karein */
+    background-color: #0b0a0a; 
+    color: white !important;
+    font-size: 10px;
+    font-weight: bold;
+    width: 14px;      /* Fixed width */
+    height: 15px;     /* Fixed height */
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;     /* Sabse upar dikhne ke liye */
+    border: 1.5px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: translate(20%, -20%); /* Perfect corner positioning */
+}
 
 .user-icon:hover {
   transform: scale(1.1);
