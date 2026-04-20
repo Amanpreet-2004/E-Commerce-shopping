@@ -79,7 +79,7 @@ app.post("/send-email", async (req, res) => {
         service: 'gmail',
         auth: {
             user: 'kaurcsamanpreet@gmail.com', // 👈 Yahan apna Gmail daalein
-            pass: 'dixf zmkq cnbo xcsg'      // 👈 Yahan apna 16-digit APP PASSWORD daalein
+            pass: 'jxps lmcs ugmu qtdo'      // 👈 Yahan apna 16-digit APP PASSWORD daalein
         }
     });
 
