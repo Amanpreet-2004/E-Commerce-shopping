@@ -13,7 +13,7 @@ import multer from "multer";
 import path from "path";
 
 const app = express();
-
+const nodemailer = require('nodemailer'); // Ye line sabse upar honi chahiye
 // --- Middlewares ---
 app.use(express.json());
 // app.use(cors());
