@@ -117,30 +117,29 @@ app.post("/upload", upload.single('product'), (req, res) => {
 
 app.post("/send-email", async (req, res) => {
     const { name, email, address, payment } = req.body;
+    console.log("📩 Mail process started for:", email);
 
-    // 1. Transporter configuration (Updated for Render/Cloud stability)
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
-        secure: true, // Port 465 ke liye true use karein
+        secure: true, 
         auth: {
             user: 'kaurcsamanpreet@gmail.com',
             pass: 'jxps lmcs ugmu qtdo' 
         },
-        // --- 🛑 CRITICAL FIXES FOR ENETUNREACH ERROR ---
-        family: 4, // Render ko force karega IPv4 use karne ke liye
+        // Ye settings Render par connection timeout aur IPv6 issues ko fix karti hain
+        family: 4, 
         tls: {
-            rejectUnauthorized: false // Connection block hone se rokega
+            rejectUnauthorized: false
         }
     });
 
-    // 2. Email Details (HTML clean-up)
     const mailOptions = {
         from: '"MyShop" <kaurcsamanpreet@gmail.com>',
         to: email, 
         subject: `Order Confirmation - MyShop`,
         html: `
-            <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+            <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
                 <h2 style="color: #e91e63;">Hello ${name},</h2>
                 <p>✨ Your order has been placed successfully! 🎉</p>
                 <hr style="border: 0; border-top: 1px solid #eee;" />
@@ -152,19 +151,14 @@ app.post("/send-email", async (req, res) => {
         `
     };
 
-    // 3. Mail bhejein with detailed error logging
     try {
         await transporter.sendMail(mailOptions);
         console.log("✅ Mail sent successfully to:", email);
         res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
-        // Logs mein detail error dikhega agar fail hua toh
-        console.error("❌ Nodemailer Error Detail:", error.message);
-        res.status(500).json({ 
-            success: false, 
-            message: "Order saved but mail failed", 
-            error: error.message 
-        });
+        // Ye console log Render ke dashboard par error ki poori detail dikhayega
+        console.error("❌ NODEMAILER CRITICAL ERROR:", error.message);
+        res.status(500).json({ success: false, message: "Mail failed", error: error.message });
     }
 });
 
