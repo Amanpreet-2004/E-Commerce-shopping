@@ -162,9 +162,8 @@ const Checkout = () => {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
 
-  // // ✅ 1. Sahi Backend URL set karein (wfyu wala jo aap use kar rahe hain)
-  // const API_BASE_URL = "https://e-commerce-shopping-1-wfyu.onrender.com";
-  const API_BASE_URL = "https://e-commerce-shopping-cdqi.onrender.com";
+  // ✅ 1. Sahi Backend URL set karein (wfyu wala jo aap use kar rahe hain)
+  const API_BASE_URL = "https://e-commerce-shopping-1-wfyu.onrender.com";
 
   useEffect(() => {
     const fetchCart = async () => {
