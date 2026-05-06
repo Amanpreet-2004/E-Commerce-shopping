@@ -305,21 +305,25 @@ app.post("/upload", upload.single('product'), (req, res) => {
 app.post("/send-email", async (req, res) => {
     const { name, email, address, payment } = req.body;
 
-    // ✅ Timeout fix karne ke liye configuration change ki hai
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true, // Port 465 ke liye true zaroori hai
-        auth: {
-            user: 'kaurcsamanpreet@gmail.com', 
-            pass: 'jxps lmcs ugmu qtdo' 
-        },
-        // ✅ Ye block connection ko allow karega
-        tls: {
-            rejectUnauthorized: false
-        },
-        connectionTimeout: 10000, // 10 seconds wait karega
-    });
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, 
+    auth: {
+        user: 'kaurcsamanpreet@gmail.com', 
+        pass: 'jxps lmcs ugmu qtdo' 
+    },
+    // ✅ Ye niche wali line IPv6 issue ko fix karegi
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+    dnsTimeout: 10000,
+    // Force IPv4 address
+    tls: {
+        rejectUnauthorized: false,
+        servername: 'smtp.gmail.com'
+    }
+});
 
     const mailOptions = {
         from: '"MyShop" <kaurcsamanpreet@gmail.com>',
