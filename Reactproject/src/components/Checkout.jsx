@@ -223,10 +223,14 @@ const Checkout = () => {
 
         // 2. Email bhejne ki koshish karein (PEHLE BHEJEIN)
         // Yahan formData mein customer ki details abhi bhi hain
-        try {
-          await axios.post("https://e-commerce-shopping-cdqi.onrender.com/send-email", formData);
-          toast.success("Confirmation mail sent!");
-        } catch (emailErr) {
+       
+         try {
+  console.log("Sending mail to:", formData.email); // 👈 Ye add karein
+  await axios.post("https://e-commerce-shopping-cdqi.onrender.com/send-email", formData);
+  toast.success("Confirmation mail sent!");
+}
+        
+         catch (emailErr) {
           console.warn("Mail confirmation skipped.");
         }
 
