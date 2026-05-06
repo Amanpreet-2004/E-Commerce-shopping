@@ -209,8 +209,9 @@ const Checkout = () => {
       // 1. Database mein Order save karein
       const response = await axios.post("https://e-commerce-shopping-cdqi.onrender.com/order/place", orderPayload);
 
+     
       if (response.data.success) {
-        // 2. IMPORTANT: Cart empty karein
+        // 1. IMPORTANT: Cart empty karein
         try {
           await axios.delete(`https://e-commerce-shopping-cdqi.onrender.com/cart/clear/${userId}`);
           window.dispatchEvent(new Event("cartUpdated"));
@@ -218,12 +219,10 @@ const Checkout = () => {
           console.error("Cart clear nahi ho paya:", cartErr);
         }
 
-        // 3. FORM RESET: Order success hone par form khali karein
-        setFormData(initialFormState);
-
         toast.success("✅ Order Placed & Cart Cleared!");
 
-        // 4. Email bhejne ki koshish karein
+        // 2. Email bhejne ki koshish karein (PEHLE BHEJEIN)
+        // Yahan formData mein customer ki details abhi bhi hain
         try {
           await axios.post("https://e-commerce-shopping-cdqi.onrender.com/send-email", formData);
           toast.success("Confirmation mail sent!");
@@ -231,7 +230,10 @@ const Checkout = () => {
           console.warn("Mail confirmation skipped.");
         }
 
-        // 5. Redirect to Success Page
+        // 3. FORM RESET: Mail bhejne ke BAAD form khali karein
+        setFormData(initialFormState);
+
+        // 4. Redirect to Success Page
         setTimeout(() => {
           navigate("/orderDone");
         }, 2000);
