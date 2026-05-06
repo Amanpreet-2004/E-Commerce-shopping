@@ -8,7 +8,7 @@ const orderRouter = express.Router();
 orderRouter.post('/place', placeOrder);
 orderRouter.get('/allorders', allOrder); 
 orderRouter.delete('/cancel/:id', cancelOrder);
-// orderRoute.js
+
 orderRouter.get('/dashboard-stats', adminAuth, getDashboardStats);
 orderRouter.get('/recent', adminAuth, getRecentOrders);
 export default orderRouter;

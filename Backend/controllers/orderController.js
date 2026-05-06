@@ -78,40 +78,6 @@ export const cancelOrder = async (req, res) => {
 
 
 
-// export const getDashboardStats = async (req, res) => {
-//     try {
-//         // 1. Saara data parallel mein fetch karein (Performance ke liye)
-//         const [productsCount, ordersCount, usersCount, allOrders] = await Promise.all([
-//             productSchema.countDocuments(),
-//             Order.countDocuments(),
-//             userSchema.countDocuments({ role: 'user' }), // Sirf normal users
-//             Order.find({})
-//         ]);
-
-//         // 2. Revenue calculate karein (Yahan check lagana zaroori hai)
-//         const totalRevenue = allOrders.reduce((acc, order) => {
-//             return acc + (Number(order.amount) || 0);
-//         }, 0);
-
-//         res.json({
-//             success: true,
-//             stats: {
-//                 totalProducts: productsCount,
-//                 totalOrders: ordersCount,
-//                 totalRevenue: totalRevenue,
-//                 newUsers: usersCount
-//             }
-//         });
-
-//     } catch (error) {
-//         console.log("Dashboard Stats Error:", error.message);
-//         res.status(500).json({ 
-//             success: false, 
-//             message: "Database se data nikalne mein galti hui" 
-//         });
-//     }
-// };
-
 
 
 
