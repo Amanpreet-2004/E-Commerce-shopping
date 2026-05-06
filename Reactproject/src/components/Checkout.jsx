@@ -86,7 +86,12 @@ const Checkout = () => {
     } catch (emailErr) {
       console.warn("Mail nahi gayi, par order aur cart clean-up ho gaya.");
     }
-
+setFormData({
+        name: "",
+        email: "",
+        address: "",
+        payment: "",
+      });
     // Redirect to Success Page
     setTimeout(() => {
       navigate("/orderDone");
