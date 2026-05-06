@@ -57,7 +57,7 @@ const Footer = () => {
                 <li>
                   <a href="https://web.whatsapp.com/">
                     <img
-                      src="http://pluspng.com/img-png/whatsapp-png-whatsapp-logo-png-1000.png"
+                      src="https://pluspng.com/img-png/whatsapp-png-whatsapp-logo-png-1000.png"
                       height="30px"
                       width="30px"
                       alt="whatsapp"
