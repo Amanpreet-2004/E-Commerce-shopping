@@ -144,14 +144,12 @@
 
 // export default Checkout;
 
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const Checkout = () => {
-  // Initial state for the form
   const initialFormState = {
     name: "",
     email: "",
@@ -164,12 +162,14 @@ const Checkout = () => {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
 
-  // 1. Cart Data load karein
+  // ✅ 1. Sahi Backend URL set karein (wfyu wala jo aap use kar rahe hain)
+  const API_BASE_URL = "https://e-commerce-shopping-1-wfyu.onrender.com";
+
   useEffect(() => {
     const fetchCart = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(`https://e-commerce-shopping-cdqi.onrender.com/cart/get/${userId}`);
+        const response = await axios.get(`${API_BASE_URL}/cart/get/${userId}`);
         if (response.data && response.data.success) {
           const itemsArray = response.data.body || [];
           const total = itemsArray.reduce((acc, item) => acc + (item.price * item.quantity), 0);
@@ -184,7 +184,7 @@ const Checkout = () => {
       }
     };
     fetchCart();
-  }, [userId]);
+  }, [userId, API_BASE_URL]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -207,34 +207,33 @@ const Checkout = () => {
 
     try {
       // 1. Database mein Order save karein
-      const response = await axios.post("https://e-commerce-shopping-cdqi.onrender.com/order/place", orderPayload);
+      const response = await axios.post(`${API_BASE_URL}/order/place`, orderPayload);
 
-     
       if (response.data.success) {
-        // 1. IMPORTANT: Cart empty karein
+        // 2. Cart empty karein
         try {
-          await axios.delete(`https://e-commerce-shopping-cdqi.onrender.com/cart/clear/${userId}`);
+          await axios.delete(`${API_BASE_URL}/cart/clear/${userId}`);
           window.dispatchEvent(new Event("cartUpdated"));
         } catch (cartErr) {
-          console.error("Cart clear nahi ho paya:", cartErr);
+          console.error("Cart clear fail:", cartErr);
         }
 
-        toast.success("✅ Order Placed & Cart Cleared!");
+        toast.success("✅ Order Saved & Cart Cleared!");
 
-        // 2. Email bhejne ki koshish karein (PEHLE BHEJEIN)
-        // Yahan formData mein customer ki details abhi bhi hain
+        // 3. Email bhejne ki koshish karein (Reset se PEHLE)
         try {
-          console.log("Sending mail to:", formData.email);
-      await axios.post("https://e-commerce-shopping-1-wfyu.onrender.com/send-email", formData);
+          // console.log("Sending mail with data:", formData); // Debugging ke liye
+          await axios.post(`${API_BASE_URL}/send-email`, formData);
           toast.success("Confirmation mail sent!");
         } catch (emailErr) {
-          console.warn("Mail confirmation skipped.");
+          console.error("Mail Error:", emailErr);
+          toast.warn("Order saved but mail failed.");
         }
 
-        // 3. FORM RESET: Mail bhejne ke BAAD form khali karein
+        // 4. Form Reset (Mail bhejne ke baad hi reset karein)
         setFormData(initialFormState);
 
-        // 4. Redirect to Success Page
+        // 5. Success Page par navigate
         setTimeout(() => {
           navigate("/orderDone");
         }, 2000);
