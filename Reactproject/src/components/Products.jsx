@@ -121,7 +121,13 @@ const Product = () => {
       e.target.src = "https://placehold.co/400x400?text=Product+Image";
     }
   }}
-/>
+/>  <h5 className="mt-3 fw-bold">{product.name}</h5>
+                    <h6 className="textf">Price: ${product.price}</h6>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/11906/11906637.png"
+                      className="iconpro"
+                      alt="rating"
+                    />
                     <br />
                     <button className="btn1 mt-2" onClick={() => handleAddToCart(product)}>
                       Add to Cart
