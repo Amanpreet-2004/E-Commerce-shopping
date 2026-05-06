@@ -57,7 +57,7 @@ const Cart = () => {
         fetchCart(); // UI refresh
       }
     } catch (err) {
-      toast.error("Quantity update nahi ho payi!");
+      toast.error("Quantity Not Updated!");
     }
   };
 
@@ -72,7 +72,7 @@ const Cart = () => {
         fetchCart();
       }
     } catch (err) {
-      toast.error("Nahi nikal paye item!");
+      toast.error("Item is not removed!");
     }
   };
 

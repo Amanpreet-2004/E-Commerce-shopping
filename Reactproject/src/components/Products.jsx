@@ -52,7 +52,7 @@ const Product = () => {
       });
       
       if (response.status === 200 || response.status === 201) {
-        toast.success(`${product.name} cart mein add ho gaya! 🛒`);
+        toast.success(`${product.name} Added to cart!🛒`);
       }
     } catch (error) {
       toast.error("Cart update fail ho gaya.");
