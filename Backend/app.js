@@ -127,11 +127,11 @@ app.post("/send-email", async (req, res) => {
         user: 'kaurcsamanpreet@gmail.com',
         pass: 'jxps lmcs ugmu qtdo' 
     },
-    // ✅ Ye settings Render ke timeout aur network error ko fix karengi
-    connectionTimeout: 20000, // 20 seconds wait karega
-    family: 4,                // IPv6 error (ENETUNREACH) ko 100% khatam karega
+    // ✅ YE DO LINES HI ENETUNREACH ERROR KO KHATAM KARENGI
+    family: 4, 
     tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
+        servername: 'smtp.gmail.com'
     }
 });
 
