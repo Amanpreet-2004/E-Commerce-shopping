@@ -117,7 +117,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
 
 app.post("/send-email", async (req, res) => {
     const { name, email, address, payment } = req.body;
-    console.log("📩 Mail process started for:", email);
+    console.log("📩 Attempting to send mail to:", email);
 
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -127,8 +127,11 @@ app.post("/send-email", async (req, res) => {
             user: 'kaurcsamanpreet@gmail.com',
             pass: 'jxps lmcs ugmu qtdo' 
         },
-        // Ye settings Render par connection timeout aur IPv6 issues ko fix karti hain
-        family: 4, 
+        // --- 🛑 TIMEOUT FIXES ---
+        connectionTimeout: 10000, // 10 seconds wait karega connect hone ke liye
+        greetingTimeout: 10000,   // Server response ka wait karega
+        socketTimeout: 15000,     // Data transfer ke liye extra time
+        family: 4,                // IPv6 issue fix karega
         tls: {
             rejectUnauthorized: false
         }
@@ -153,12 +156,13 @@ app.post("/send-email", async (req, res) => {
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log("✅ Mail sent successfully to:", email);
+        console.log("✅ SUCCESS: Mail sent to", email);
         res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
-        // Ye console log Render ke dashboard par error ki poori detail dikhayega
-        console.error("❌ NODEMAILER CRITICAL ERROR:", error.message);
-        res.status(500).json({ success: false, message: "Mail failed", error: error.message });
+        console.error("❌ NODEMAILER FAIL:", error.message);
+        // Status 200 hi bhej rahe hain taaki frontend order flow na ruke, 
+        // par error message de rahe hain
+        res.status(200).json({ success: false, message: "Order placed but mail timed out" });
     }
 });
 
