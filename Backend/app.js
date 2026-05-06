@@ -119,23 +119,21 @@ app.post("/send-email", async (req, res) => {
     const { name, email, address, payment } = req.body;
     console.log("📩 Attempting to send mail to:", email);
 
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true, 
-        auth: {
-            user: 'kaurcsamanpreet@gmail.com',
-            pass: 'jxps lmcs ugmu qtdo' 
-        },
-        // --- 🛑 TIMEOUT FIXES ---
-        connectionTimeout: 15000, // 10 seconds wait karega connect hone ke liye
-        greetingTimeout: 15000,   // Server response ka wait karega
-        socketTimeout: 15000,     // Data transfer ke liye extra time
-        family: 4,                // IPv6 issue fix karega
-        tls: {
-            rejectUnauthorized: false
-        }
-    });
+   const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, 
+    auth: {
+        user: 'kaurcsamanpreet@gmail.com',
+        pass: 'jxps lmcs ugmu qtdo' 
+    },
+    // ✅ Ye settings Render ke timeout aur network error ko fix karengi
+    connectionTimeout: 20000, // 20 seconds wait karega
+    family: 4,                // IPv6 error (ENETUNREACH) ko 100% khatam karega
+    tls: {
+        rejectUnauthorized: false
+    }
+});
 
     const mailOptions = {
         from: '"MyShop" <kaurcsamanpreet@gmail.com>',
