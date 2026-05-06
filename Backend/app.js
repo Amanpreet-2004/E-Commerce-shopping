@@ -128,8 +128,8 @@ app.post("/send-email", async (req, res) => {
             pass: 'jxps lmcs ugmu qtdo' 
         },
         // --- 🛑 TIMEOUT FIXES ---
-        connectionTimeout: 10000, // 10 seconds wait karega connect hone ke liye
-        greetingTimeout: 10000,   // Server response ka wait karega
+        connectionTimeout: 15000, // 10 seconds wait karega connect hone ke liye
+        greetingTimeout: 15000,   // Server response ka wait karega
         socketTimeout: 15000,     // Data transfer ke liye extra time
         family: 4,                // IPv6 issue fix karega
         tls: {
