@@ -61,50 +61,110 @@ const upload = multer({ storage: storage });
 
 // --- Image Upload Endpoint ---
 app.post("/upload", upload.single('product'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ success: 0, message: "No file uploaded" });
-    }
-    res.json({
-        success: 1,
-        image_url: `http://localhost:4644/images/${req.file.filename}`
-    });
+    // localhost ki jagah req.get('host') use karein
+    const imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+    res.json({ success: 1, image_url: imageUrl });
 });
 
+
+// app.post("/upload", upload.single('product'), (req, res) => {
+//     if (!req.file) {
+//         return res.status(400).json({ success: 0, message: "No file uploaded" });
+//     }
+//     res.json({
+//         success: 1,
+//         image_url: `http://localhost:4644/images/${req.file.filename}`
+//     });
+// });
+
 // --- ✅ Updated Nodemailer Email Route ---
+// app.post("/send-email", async (req, res) => {
+//     const { name, email, address, payment } = req.body;
+
+//     // 1. Transporter banayein
+//     const transporter = nodemailer.createTransport({
+//         service: 'gmail',
+//         auth: {
+//             user: 'kaurcsamanpreet@gmail.com', // 👈 Yahan apna Gmail daalein
+//             pass: 'jxps lmcs ugmu qtdo'      // 👈 Yahan apna 16-digit APP PASSWORD daalein
+//         }
+//     });
+
+//     // 2. Email Details set karein
+//     const mailOptions = {
+//         from: 'kaurcsamanpreet@gmail.com',
+//         to: email, // Customer ko mail jayegi
+//         subject: `Order Confirmation - MyShop`,
+//         html: `
+//             <h3>Hello ${name},</h3>
+//             <p>✨Your order has been placed successfully!🎉p>
+//             <p><b>Delivery Address:</b> ${address}</p>
+//             <p><b>Payment Mode:</b> ${payment}</p>
+//             <br>
+//             <p>Thank you for shopping with MyShop!</p>
+//         `
+//     };
+
+//     // 3. Mail bhejein
+//     try {
+//         await transporter.sendMail(mailOptions);
+//         res.status(200).json({ success: true, message: "Email sent successfully!" });
+//     } catch (error) {
+//         console.error("Nodemailer Error:", error);
+//         res.status(500).json({ success: false, message: "Failed to send email" });
+//     }
+// });
+
 app.post("/send-email", async (req, res) => {
     const { name, email, address, payment } = req.body;
 
-    // 1. Transporter banayein
+    // 1. Transporter configuration (Updated for Render/Cloud stability)
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true, // Port 465 ke liye true use karein
         auth: {
-            user: 'kaurcsamanpreet@gmail.com', // 👈 Yahan apna Gmail daalein
-            pass: 'jxps lmcs ugmu qtdo'      // 👈 Yahan apna 16-digit APP PASSWORD daalein
+            user: 'kaurcsamanpreet@gmail.com',
+            pass: 'jxps lmcs ugmu qtdo' 
+        },
+        // --- 🛑 CRITICAL FIXES FOR ENETUNREACH ERROR ---
+        family: 4, // Render ko force karega IPv4 use karne ke liye
+        tls: {
+            rejectUnauthorized: false // Connection block hone se rokega
         }
     });
 
-    // 2. Email Details set karein
+    // 2. Email Details (HTML clean-up)
     const mailOptions = {
-        from: 'kaurcsamanpreet@gmail.com',
-        to: email, // Customer ko mail jayegi
+        from: '"MyShop" <kaurcsamanpreet@gmail.com>',
+        to: email, 
         subject: `Order Confirmation - MyShop`,
         html: `
-            <h3>Hello ${name},</h3>
-            <p>✨Your order has been placed successfully!🎉p>
-            <p><b>Delivery Address:</b> ${address}</p>
-            <p><b>Payment Mode:</b> ${payment}</p>
-            <br>
-            <p>Thank you for shopping with MyShop!</p>
+            <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+                <h2 style="color: #e91e63;">Hello ${name},</h2>
+                <p>✨ Your order has been placed successfully! 🎉</p>
+                <hr style="border: 0; border-top: 1px solid #eee;" />
+                <p><b>Delivery Address:</b> ${address}</p>
+                <p><b>Payment Mode:</b> ${payment}</p>
+                <br>
+                <p>Thank you for shopping with <b style="color: #e91e63;">MyShop</b>!</p>
+            </div>
         `
     };
 
-    // 3. Mail bhejein
+    // 3. Mail bhejein with detailed error logging
     try {
         await transporter.sendMail(mailOptions);
+        console.log("✅ Mail sent successfully to:", email);
         res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
-        console.error("Nodemailer Error:", error);
-        res.status(500).json({ success: false, message: "Failed to send email" });
+        // Logs mein detail error dikhega agar fail hua toh
+        console.error("❌ Nodemailer Error Detail:", error.message);
+        res.status(500).json({ 
+            success: false, 
+            message: "Order saved but mail failed", 
+            error: error.message 
+        });
     }
 });
 
