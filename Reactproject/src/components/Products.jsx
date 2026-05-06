@@ -78,7 +78,7 @@ const Product = () => {
                   <div className="product-card-inner pb-3">
                     
                     {/* IMAGE LOGIC FIX */}
-                    <img 
+                    {/* <img 
                       src={
     product.image.includes("localhost") 
       ? `${API_BASE_URL}/images/${product.image.split('/').pop()}` 
@@ -98,7 +98,30 @@ const Product = () => {
                       src="https://cdn-icons-png.flaticon.com/128/11906/11906637.png"
                       className="iconpro"
                       alt="rating"
-                    />
+                    /> */}
+                    {/* IMAGE LOGIC FIX */}
+<img 
+  src={
+    product.image.includes("localhost") 
+      ? `${API_BASE_URL}/images/${product.image.split('/').pop()}` 
+      : product.image.startsWith('http') 
+        ? product.image 
+        : `${API_BASE_URL}/images/${product.image}`
+  } 
+  alt={product.name} 
+  className="imgpro shadow-sm" 
+  onError={(e) => {
+    // Agar upar wala path fail ho jaye (e.g. /images/ folder mein nahi hai)
+    // toh ye bina '/images/' ke try karega
+    if (!e.target.dataset.tried) {
+      e.target.dataset.tried = "true";
+      e.target.src = `${API_BASE_URL}/${product.image.split('/').pop()}`;
+    } else {
+      // Dono fail hone par placeholder dikhayega
+      e.target.src = "https://placehold.co/400x400?text=Product+Image";
+    }
+  }}
+/>
                     <br />
                     <button className="btn1 mt-2" onClick={() => handleAddToCart(product)}>
                       Add to Cart
