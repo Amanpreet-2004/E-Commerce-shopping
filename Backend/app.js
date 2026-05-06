@@ -117,50 +117,36 @@ app.post("/upload", upload.single('product'), (req, res) => {
 
 app.post("/send-email", async (req, res) => {
     const { name, email, address, payment } = req.body;
-    console.log("📩 Attempting to send mail to:", email);
-
-   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, 
-    auth: {
-        user: 'kaurcsamanpreet@gmail.com',
-        pass: 'jxps lmcs ugmu qtdo' 
-    },
-    // ✅ YE DO LINES HI ENETUNREACH ERROR KO KHATAM KARENGI
-    family: 4, 
-    tls: {
-        rejectUnauthorized: false,
-        servername: 'smtp.gmail.com'
-    }
-});
-
-    const mailOptions = {
-        from: '"MyShop" <kaurcsamanpreet@gmail.com>',
-        to: email, 
-        subject: `Order Confirmation - MyShop`,
-        html: `
-            <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                <h2 style="color: #e91e63;">Hello ${name},</h2>
-                <p>✨ Your order has been placed successfully! 🎉</p>
-                <hr style="border: 0; border-top: 1px solid #eee;" />
-                <p><b>Delivery Address:</b> ${address}</p>
-                <p><b>Payment Mode:</b> ${payment}</p>
-                <br>
-                <p>Thank you for shopping with <b style="color: #e91e63;">MyShop</b>!</p>
-            </div>
-        `
-    };
 
     try {
-        await transporter.sendMail(mailOptions);
-        console.log("✅ SUCCESS: Mail sent to", email);
-        res.status(200).json({ success: true, message: "Email sent successfully!" });
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'kaurcsamanpreet@gmail.com',
+                pass: 'jxps lmcs ugmu qtdo'
+            },
+            family: 4, // IPv6 issue fix karne ke liye
+            connectionTimeout: 15000 // Render ke slow network ke liye
+        });
+
+        // 🛑 YE LINE SABSE ZAROORI HAI: response bhejne se pehle wait karega
+        const info = await transporter.sendMail({
+            from: '"MyShop" <kaurcsamanpreet@gmail.com>',
+            to: email,
+            subject: `Order Confirmation - MyShop`,
+            html: `<h3>Hello ${name}, Your order is confirmed!</h3>`
+        });
+
+        console.log("✅ Mail sent: %s", info.messageId); // Log mein check karein
+        
+        // Response sirf success ke baad hi bhejein
+        return res.status(200).json({ success: true, message: "Email sent successfully!" });
+
     } catch (error) {
-        console.error("❌ NODEMAILER FAIL:", error.message);
-        // Status 200 hi bhej rahe hain taaki frontend order flow na ruke, 
-        // par error message de rahe hain
-        res.status(200).json({ success: false, message: "Order placed but mail timed out" });
+        console.error("❌ Nodemailer Error:", error.message);
+        return res.status(500).json({ success: false, message: "Mail failed" });
     }
 });
 
