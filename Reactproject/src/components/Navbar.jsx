@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -52,17 +53,24 @@ const fetchCartCount = useCallback(async () => {
   //   navigate("/");
   //   window.location.reload();
   // };
-  
 const handleLogout = () => {
-  // 1. Storage saaf karein
-  localStorage.clear();
-  
-  // 2. State ko manually 0 karein taaki UI turant update ho
-  setCartCount(0);
-  
-  // 3. Navigate ki jagah replace use karein taaki state fresh ho jaye
-  window.location.replace("/login"); 
-};
+    // 2. Display Success Toast
+    toast.success("Logout Successful! Cart has been cleared.", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "dark",
+    });
+
+    // 3. Clear storage and state
+    localStorage.clear();
+    setCartCount(0);
+    
+    // Wait a moment for the user to see the toast before redirecting
+    setTimeout(() => {
+      window.location.replace("/login"); 
+    }, 1500);
+  };
+
   return (
     <div className="navbar navbar-expand-lg">
       <div className="container-fluid">
